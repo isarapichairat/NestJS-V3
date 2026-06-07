@@ -1,0 +1,23 @@
+GET http://localhost:3000/songs 
+
+### find song
+GET http://localhost:3000/songs/1
+
+
+### add song
+### add song
+POST http://localhost:3000/songs
+Content-Type: application/json
+
+{
+    "title": "lasting lover",
+    "artists": ["sigla"],
+    "releaseDate": "2020-09-29",
+    "duration": "04:39"
+}
+### edit song
+PUT  http://localhost:3000/songs/1
+
+### delete song
+
+DELETE  http://localhost:3000/songs/1
