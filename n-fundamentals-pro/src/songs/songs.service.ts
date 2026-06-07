@@ -14,6 +14,8 @@ export class SongsService {
         }
         findAll(){
                 //fetch the song from db
+                //Errror comes while fetching the data from db
+                throw new Error('Error in db while fetching recode')
                 return this.songs;
         }
 }
