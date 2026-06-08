@@ -2,12 +2,16 @@ import { Controller, Delete, Post, Get, Put, Body, HttpException, HttpStatus, Pa
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 import type { Connection } from 'src/common/constatnts/connection';
+import { Song } from './song.entity';
+import { DeleteResult } from 'typeorm';
+import { UpdateSongDto } from './dto/update-song.dto';
+import { UpdateResult } from 'typeorm/browser';
 
 
 @Controller({path: 'songs', scope: Scope.REQUEST})
 export class SongsController {
 
-        constructor(private songService: SongsService,
+        constructor(private songsService: SongsService,
                 @Inject('CONNECTION')
                 private connection: Connection,
         ){
@@ -15,13 +19,14 @@ export class SongsController {
         }
 
         @Post()
-        create(@Body() createSongDTO : CreateSongDTO){
-                return this.songService.create(createSongDTO);
+        create(@Body() createSongDTO : CreateSongDTO): Promise<Song>
+        {
+                return this.songsService.create(createSongDTO);
         }
         @Get()
-        findAll(){
+        findAll() : Promise<Song[]>{
                 try{
-                return this.songService.findAll();
+                return this.songsService.findAll();
                 }catch(e){
                         throw new HttpException(
                                 'server error',
@@ -37,17 +42,20 @@ export class SongsController {
         findOne(
                 @Param('id',new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE}))
                 id: number,
-        ){
-                return `fetch song on the based on ${typeof id}`;
+        ) : Promise<Song | null>{
+                return this.songsService.findOne(id);
         }
 
         @Put(':id')
-        update(){
-                return 'update song on the based on id';
+        update(
+                @Param('id', ParseIntPipe) id: number,
+                @Body() updateSongDTO: UpdateSongDto,
+        ): Promise<UpdateResult>{
+                 return this.songsService.update(id, updateSongDTO);
         }
 
         @Delete(':id')
-        delete(){
-                return 'delete song on the based on id';
+        delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult>{
+                return this.songsService.remove(id);
         }
 }
