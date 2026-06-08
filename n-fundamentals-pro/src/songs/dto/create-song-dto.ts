@@ -1,23 +1,31 @@
-import { IsArray, IsDateString, IsNotEmpty, IsString, Matches } from 'class-validator';
-import { Type } from 'class-transformer';
+import {
+  IsArray,
+  IsDateString,
+  IsMilitaryTime,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateSongDTO {
   @IsString()
   @IsNotEmpty()
-  title: string;
+  readonly title;
 
+  @IsNotEmpty()
   @IsArray()
   @IsString({ each: true })
-  @IsNotEmpty()
-  artists: string[];
+  readonly artists;
 
+  @IsNotEmpty()
   @IsDateString()
-  @IsNotEmpty()
-  releaseDate: string;
+  readonly releasedDate: Date;
 
+  @IsMilitaryTime()
   @IsNotEmpty()
-  @Matches(/^([01]\d|2[0-3]):[0-5]\d$/, {
-    message: 'duration must be a valid representation of military time in the format HH:MM',
-  })
-  duration: string;
+  readonly duration: Date;
+
+  @IsString()
+  @IsOptional()
+  readonly lyrics: string;
 }
