@@ -1,24 +1,29 @@
 import { CONFIGURABLE_MODULE_ID } from "@nestjs/common/module-utils/constants";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Artist } from "src/artist/artist.entity";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('songs')
 export class Song{
         @PrimaryGeneratedColumn()
-        id: number;
+        id!: number;
 
         @Column()
-        title: string;
+        title!: string;
 
-        @Column('varchar', {array: true})
-        artists: string;
+        @Column('varchar', { array: true })
+        artistNames!: string[];
 
         @Column('date')
-        releasedDate: Date;
+        releasedDate!: Date;
 
         @Column('time')
-        duration: Date;
+        duration!: Date;
 
         @Column('text')
-        lyrics: string;
+        lyrics!: string;
+
+        @ManyToMany(() => Artist, (artist) => artist.songs,{cascade: true})
+        @JoinTable({ name: "songs_artists" })
+        artists!: Artist[];
 
 }

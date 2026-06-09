@@ -20,8 +20,7 @@ export class SongsController {
         }
 
         @Post()
-        create(@Body() createSongDTO : CreateSongDTO): Promise<Song>
-        {
+        create(@Body() createSongDTO: CreateSongDTO): Promise<Song> {
                 return this.songsService.create(createSongDTO);
         }
         @Get()
