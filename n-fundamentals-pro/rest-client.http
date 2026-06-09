@@ -74,3 +74,10 @@ Content-Type: application/json
 "email": "john12@gmail.com",
 "password": "123456"
 }
+
+
+
+###Access TOKEN : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMkBnbWFpbC5jb20iLCJzdWIiOjEsImlhdCI6MTc4MTAxNDI3NiwiZXhwIjoxNzgxMTAwNjc2fQ.8N6AZS2MyeCB82usIE5v3zKHFVaBo8-IJ26mFVP6ixE
+### Profile
+GET  http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMkBnbWFpbC5jb20iLCJzdWIiOjEsImlhdCI6MTc4MTAxNDI3NiwiZXhwIjoxNzgxMTAwNjc2fQ.8N6AZS2MyeCB82usIE5v3zKHFVaBo8-IJ26mFVP6ixE
