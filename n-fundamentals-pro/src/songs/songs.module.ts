@@ -5,7 +5,7 @@ import { connect } from 'http2';
 import { connection } from 'src/common/constatnts/connection';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Song } from './song.entity';
-import { Artist } from 'src/artist/artist.entity';
+import { Artist } from 'src/artists/artist.entity';
 
 const mockSongsService = {
   findAll(){

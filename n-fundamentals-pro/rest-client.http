@@ -11,10 +11,11 @@ GET http://localhost:3000/songs/1
 ### add song
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbmdhcnJpeDNAZ21haWwuY29tIiwidXNlcklkIjo0LCJhcnRpc3RJZCI6MSwiaWF0IjoxNzgxMDE5OTAxLCJleHAiOjE3ODExMDYzMDF9.nJCJbUiMsh9S3jaxOc1HcvBeKmNl51cU6HVFBNVsNrA
 
 {
-"title": "You for me 6",
-"artists": [1,2],
+"title": "Love again",
+"artists": [1],
 "releasedDate" : "2023-05-11",
 "duration" :"02:34",
 "lyrics": "Sby, you're my adrenaline. Brought out this other side of me You don't even know Controlling my whole anatomy, oh Fingers are holding you right at the edge You're slipping out of my hands Keeping my secrets all up in my head I'm scared that you won't want me back, oh I dance to every song like it's about ya I drink 'til I kiss someone who looks like ya I wish that I was honest when I had you I shoulda told you that I wanted you for me I dance to every song like it's about ya I drink 'til I kiss someone who looks like ya"
@@ -66,6 +67,27 @@ Content-Type: application/json
 }
 
 
+### Signup Artist
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"firstName": "Martin3",
+"lastName": "Garrix",
+"email": "martingarrix3@gmail.com",
+"password": "123456"
+}
+
+
+### Login Artist
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+"email": "martingarrix3@gmail.com",
+"password": "123456"
+}
+
 ### Login User
 POST http://localhost:3000/auth/login
 Content-Type: application/json
@@ -75,9 +97,9 @@ Content-Type: application/json
 "password": "123456"
 }
 
-
+### Atrist Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbmdhcnJpeEBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImlhdCI6MTc4MTAxODMzMywiZXhwIjoxNzgxMTA0NzMzfQ.EeIlyD0ZbvzQM0EJqJS6HZlClBXQr8Bx4_cG_jgMywI
 
 ###Access TOKEN : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMkBnbWFpbC5jb20iLCJzdWIiOjEsImlhdCI6MTc4MTAxNDI3NiwiZXhwIjoxNzgxMTAwNjc2fQ.8N6AZS2MyeCB82usIE5v3zKHFVaBo8-IJ26mFVP6ixE
 ### Profile
 GET  http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMkBnbWFpbC5jb20iLCJzdWIiOjEsImlhdCI6MTc4MTAxNDI3NiwiZXhwIjoxNzgxMTAwNjc2fQ.8N6AZS2MyeCB82usIE5v3zKHFVaBo8-IJ26mFVP6ixE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbmdhcnJpeDNAZ21haWwuY29tIiwidXNlcklkIjo0LCJhcnRpc3RJZCI6MSwiaWF0IjoxNzgxMDE5OTAxLCJleHAiOjE3ODExMDYzMDF9.nJCJbUiMsh9S3jaxOc1HcvBeKmNl51cU6HVFBNVsNrA

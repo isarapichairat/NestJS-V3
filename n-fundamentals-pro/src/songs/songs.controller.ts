@@ -1,4 +1,4 @@
-import { Controller, Delete, Post, Get, Put, Body, HttpException, HttpStatus, Param, ParseIntPipe, Inject, Scope, Query, DefaultValuePipe } from '@nestjs/common';
+import { Controller, Delete, Post, Get, Put, Body, HttpException, HttpStatus, Param, ParseIntPipe, Inject, Scope, Query, DefaultValuePipe, UseGuards } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 import type { Connection } from 'src/common/constatnts/connection';
@@ -7,20 +7,20 @@ import { DeleteResult } from 'typeorm';
 import { UpdateSongDto } from './dto/update-song.dto';
 import { UpdateResult } from 'typeorm';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { ArtistJwtGuard } from 'src/auth/artists-jwt-guard';
+import { Request } from '@nestjs/common';
 
-
-@Controller({path: 'songs', scope: Scope.REQUEST})
+@Controller('songs')
 export class SongsController {
 
-        constructor(private songsService: SongsService,
-                @Inject('CONNECTION')
-                private connection: Connection,
-        ){
-                console.log(`this is connection string ${this.connection.CONNECTION_STRING}`);
-        }
+        constructor(private songsService: SongsService) { }
 
         @Post()
-        create(@Body() createSongDTO: CreateSongDTO): Promise<Song> {
+        @UseGuards(ArtistJwtGuard)
+        create(@Body() createSongDTO: CreateSongDTO,
+                @Request()
+                request,): Promise<Song> {
+                        console.log(`request.user:`,request.user);
                 return this.songsService.create(createSongDTO);
         }
         @Get()
@@ -39,9 +39,9 @@ export class SongsController {
 
         @Get(':id')
         findOne(
-                @Param('id',new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE}))
+                @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }))
                 id: number,
-        ) : Promise<Song | null>{
+        ): Promise<Song | null> {
                 return this.songsService.findOne(id);
         }
 
@@ -49,12 +49,12 @@ export class SongsController {
         update(
                 @Param('id', ParseIntPipe) id: number,
                 @Body() updateSongDTO: UpdateSongDto,
-        ): Promise<UpdateResult>{
-                 return this.songsService.update(id, updateSongDTO);
+        ): Promise<UpdateResult> {
+                return this.songsService.update(id, updateSongDTO);
         }
 
         @Delete(':id')
-        delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult>{
+        delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult> {
                 return this.songsService.remove(id);
         }
 }

@@ -9,13 +9,13 @@ import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/providers/DevConfigService';
 import { DataSource } from 'typeorm';
 import { Song } from './songs/song.entity';
-import { Artist } from './artist/artist.entity';
+import { Artist } from './artists/artist.entity';
 import { User } from './users/user.entity';
 import { Playlist } from './playlists/playlist.entity';
 import { PlayListModule } from './playlists/playlists.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { JwtModule } from '@nestjs/jwt';
+import { ArtistsModule } from './artists/artists.module';
 
 
 const devConfig = {port: 3000};
@@ -37,6 +37,7 @@ const proConfig = {port: 4000};
     PlayListModule, 
     AuthModule, 
     UsersModule,
+    ArtistsModule,
     
   ],
   controllers: [AppController],
@@ -49,7 +50,8 @@ const proConfig = {port: 4000};
     useFactory: () => {
       return process.env.NODE_ENV === 'development' ? devConfig : proConfig
     }
-  }
+  },
+
 ],
 })
 export class AppModule implements NestModule{
