@@ -7,6 +7,7 @@ import { ArtistsService } from 'src/artists/artists.service';
 import { Enable2FAType, LoginResponseType, PayloadType } from './types';
 import * as speakeasy from 'speakeasy';
 import { UpdateResult } from 'typeorm';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,7 @@ export class AuthService {
     private userService: UsersService,
     private jwtService: JwtService,
     private artistsService: ArtistsService,
-  ) {}
+  ) { }
 
   async login(loginDTO: LoginDTO): Promise<LoginResponseType> {
     const user = await this.userService.findOne(loginDTO);
@@ -82,5 +83,9 @@ export class AuthService {
 
   async disable2FA(userId: number): Promise<UpdateResult> {
     return this.userService.disable2FA(userId);
+  }
+
+  async validateUserByApiKey(apiKey: string): Promise<User> {
+    return this.userService.findByApiKey(apiKey);
   }
 }

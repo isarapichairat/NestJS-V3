@@ -62,9 +62,11 @@ Content-Type: application/json
 {
 "firstName": "john",
 "lastName": "doe",
-"email": "john12@gmail.com",
+"email": "john13@gmail.com",
 "password": "123456"
 }
+
+### api key : e129fe98-a2d6-4db8-8666-20042a9ac0ee
 
 
 ### Signup Artist
@@ -126,12 +128,7 @@ GET http://localhost:3000/auth/disable-2fa
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTc4MTAyMzA0MywiZXhwIjoxNzgxMTA5NDQzfQ.-R5NQPcIpigM7kxVp_8v1KLSqgUJ2rXjfD0uu5aFkK0
 
 
+### access proflie
+GET http://localhost:3000/auth/profile
+Authorization: Bearer e129fe98-a2d6-4db8-8666-20042a9ac0ee
 
-### Login User
-POST http://localhost:3000/auth/login
-Content-Type: application/json
-
-{
-"email": "john12@gmail.com",
-"password": "123456"
-}
