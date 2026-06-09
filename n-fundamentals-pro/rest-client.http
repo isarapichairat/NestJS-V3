@@ -103,3 +103,9 @@ Content-Type: application/json
 ### Profile
 GET  http://localhost:3000/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbmdhcnJpeDNAZ21haWwuY29tIiwidXNlcklkIjo0LCJhcnRpc3RJZCI6MSwiaWF0IjoxNzgxMDE5OTAxLCJleHAiOjE3ODExMDYzMDF9.nJCJbUiMsh9S3jaxOc1HcvBeKmNl51cU6HVFBNVsNrA
+
+
+
+###Enable 2FA
+GET http://localhost:3000/auth/enable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xMkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTc4MTAyMzA0MywiZXhwIjoxNzgxMTA5NDQzfQ.-R5NQPcIpigM7kxVp_8v1KLSqgUJ2rXjfD0uu5aFkK0

@@ -21,7 +21,7 @@ export class User {
         @Column()
         lastName!: string;
 
-        @Column({ unique: true})
+        @Column({ unique: true })
         email!: string;
 
         @Column()
@@ -30,5 +30,11 @@ export class User {
 
         @OneToMany(() => Playlist, (playList) => playList.user)
         playLists!: Playlist[];
+
+        // user.entity.ts
+        @Column({ nullable: true, type: 'text' })
+        twoFASecret: string;
+        @Column({ default: false, type: 'boolean' })
+        enable2FA: boolean;
 
 }
