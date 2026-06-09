@@ -15,6 +15,7 @@ import { Playlist } from './playlists/playlist.entity';
 import { PlayListModule } from './playlists/playlists.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { JwtModule } from '@nestjs/jwt';
 
 
 const devConfig = {port: 3000};
@@ -32,7 +33,12 @@ const proConfig = {port: 4000};
       synchronize: true,
     }
   ),
-    SongsModule,PlayListModule, AuthModule, UsersModule],
+    SongsModule,
+    PlayListModule, 
+    AuthModule, 
+    UsersModule,
+    
+  ],
   controllers: [AppController],
   providers: [AppService,{
     provide: DevConfigService,
