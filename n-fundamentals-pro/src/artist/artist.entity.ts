@@ -8,12 +8,12 @@ import { Song } from "src/songs/song.entity";
 @Entity('artists')
 export class Artist{
         @PrimaryGeneratedColumn()
-        id: number;
+        id!: number;
 
         @OneToOne(() => User)
         @JoinColumn()
-        user: User;
+        user!: User;
 
         @ManyToMany(() => Song, (song) => song.artists)
-        songs: Song[];
+        songs!: Song[];
 }

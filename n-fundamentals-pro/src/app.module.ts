@@ -11,6 +11,8 @@ import { DataSource } from 'typeorm';
 import { Song } from './songs/song.entity';
 import { Artist } from './artist/artist.entity';
 import { User } from './users/user.entity';
+import { Playlist } from './playlists/playlist.entity';
+import { PlayListModule } from './playlists/playlists.module';
 
 
 const devConfig = {port: 3000};
@@ -24,11 +26,11 @@ const proConfig = {port: 4000};
       port: 5432,
       username: 'postgres',
       password: 'root',
-      entities: [Song, Artist, User],
+      entities: [Song, Artist, User, Playlist],
       synchronize: true,
     }
   ),
-    SongsModule],
+    SongsModule,PlayListModule],
   controllers: [AppController],
   providers: [AppService,{
     provide: DevConfigService,

@@ -22,16 +22,13 @@ export class SongsService {
    async create(songDTO: CreateSongDTO) :Promise<Song> {
     const song = new Song();
     song.title = songDTO.title;
-    song.artistNames = songDTO.artists;
     song.duration = songDTO.duration;
     song.lyrics = songDTO.lyrics;
     song.releasedDate = songDTO.releasedDate;
 
-    //find all the artist on the base on id
+    // find artists by id and link them to the song
     const artists = await this.artistsRepository.findByIds(songDTO.artists);
 
-
-    //set the relation ith artist and songs
     song.artists = artists;
 
     return  this.songsRepository.save(song);
