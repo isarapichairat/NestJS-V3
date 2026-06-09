@@ -53,3 +53,24 @@ Content-Type: application/json
     ],
     "user": 2
 }
+
+### Signup User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"firstName": "john",
+"lastName": "doe",
+"email": "john12@gmail.com",
+"password": "123456"
+}
+
+
+### Login User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+"email": "john12@gmail.com",
+"password": "123456"
+}

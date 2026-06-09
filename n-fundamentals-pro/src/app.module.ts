@@ -13,6 +13,8 @@ import { Artist } from './artist/artist.entity';
 import { User } from './users/user.entity';
 import { Playlist } from './playlists/playlist.entity';
 import { PlayListModule } from './playlists/playlists.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 
 const devConfig = {port: 3000};
@@ -21,7 +23,7 @@ const proConfig = {port: 4000};
   imports: [TypeOrmModule.forRoot(
     {
       type: 'postgres',
-      database: 'spotify-clone',
+      database: 'spotify-clone-01',
       host: 'localhost',
       port: 5432,
       username: 'postgres',
@@ -30,7 +32,7 @@ const proConfig = {port: 4000};
       synchronize: true,
     }
   ),
-    SongsModule,PlayListModule],
+    SongsModule,PlayListModule, AuthModule, UsersModule],
   controllers: [AppController],
   providers: [AppService,{
     provide: DevConfigService,
