@@ -75,4 +75,9 @@ export class AuthController {
       user: req.user,
     };
   }
+
+  @Get('test')
+  testEnv() {
+    return this.authService.getEnvVariables();
+  }
 }

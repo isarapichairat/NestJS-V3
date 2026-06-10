@@ -74,9 +74,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-"firstName": "Martin3",
+"firstName": "Martin",
 "lastName": "Garrix",
-"email": "martingarrix3@gmail.com",
+"email": "martingarrix@gmail.com",
 "password": "123456"
 }
 
@@ -131,4 +131,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4xM
 ### access proflie
 GET http://localhost:3000/auth/profile
 Authorization: Bearer e129fe98-a2d6-4db8-8666-20042a9ac0ee
+
+
+###
+GET http://localhost:3000/auth/test
 
