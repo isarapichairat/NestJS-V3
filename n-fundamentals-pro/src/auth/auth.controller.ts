@@ -10,8 +10,11 @@ import { ValidateTokenDTO } from "./dto/validate-token.dto";
 import { UpdateResult } from "typeorm";
 import { LoginResponseType } from "./types";
 import { AuthGuard } from "@nestjs/passport";
+import { ApiTags, ApiOperation,ApiResponse  } from "@nestjs/swagger";
+import { ApiBody } from "@nestjs/swagger";
 
 @Controller("auth")
+@ApiTags("auth")
 export class AuthController {
   constructor(
     private authService: AuthService,
@@ -19,10 +22,17 @@ export class AuthController {
   ) { }
 
   @Post("signup")
-  signup(@Body() userDTO: CreateUserDTO): Promise<User> {
+  @ApiOperation({ summary: 'Register new user' })
+  @ApiResponse({
+    status: 201,
+    description: 'It will return the user in the response',
+  })
+  signup(@Body()
+  userDTO: CreateUserDTO,
+  ): Promise<User> {
     return this.userService.create(userDTO);
   }
-
+  @ApiBody({ type: LoginDTO })
   @Post('login')
   async login(@Body() loginDTO: LoginDTO): Promise<LoginResponseType> {
     return this.authService.login(loginDTO);
