@@ -9,8 +9,10 @@ import { UpdateResult } from 'typeorm';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { ArtistJwtGuard } from 'src/auth/artists-jwt-guard';
 import { Request } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('songs')
+@ApiTags('songs')
 export class SongsController {
 
         constructor(private songsService: SongsService) { }

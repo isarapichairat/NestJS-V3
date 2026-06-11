@@ -10,7 +10,7 @@ import { ValidateTokenDTO } from "./dto/validate-token.dto";
 import { UpdateResult } from "typeorm";
 import { LoginResponseType } from "./types";
 import { AuthGuard } from "@nestjs/passport";
-import { ApiTags, ApiOperation,ApiResponse  } from "@nestjs/swagger";
+import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { ApiBody } from "@nestjs/swagger";
 
 @Controller("auth")
@@ -34,6 +34,11 @@ export class AuthController {
   }
   @ApiBody({ type: LoginDTO })
   @Post('login')
+  @ApiOperation({ summary: 'Login user' })
+  @ApiResponse({
+    status: 200,
+    description: 'It will give you the access_token in the response',
+  })
   async login(@Body() loginDTO: LoginDTO): Promise<LoginResponseType> {
     return this.authService.login(loginDTO);
   }

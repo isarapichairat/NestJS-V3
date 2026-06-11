@@ -21,7 +21,19 @@ async function bootstrap() {
     .setTitle("Spotify Clone")
     .setDescription("The Spotify Clone Api documentation")
     .setVersion("1.0")
-    .build();
+    .addBearerAuth(
+      // Enable Bearer Auth here
+      {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+        name: "JWT",
+        description: "Enter JWT token",
+        in: "header",
+      },
+      'JWT-auth',
+    )
+        .build();
 
   const document = SwaggerModule.createDocument(app, config); //2
   SwaggerModule.setup("api", app, document); //3
