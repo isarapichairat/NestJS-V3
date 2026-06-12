@@ -1,0 +1,20 @@
+require('reflect-metadata');
+const fs = require('fs');
+const dotenv = require('dotenv');
+const { plainToInstance } = require('class-transformer');
+const { validateSync, IsEnum, IsNumber, IsString } = require('class-validator');
+const content = fs.readFileSync('.env.development', 'utf8');
+const env = dotenv.parse(content);
+console.log('env.SECRET', env.SECRET, typeof env.SECRET);
+class EnvironmentVariables {}
+Reflect.decorate([IsEnum({ Development: 'development', Production: 'production', Test: 'test', Provision: 'provision' })], EnvironmentVariables.prototype, 'NODE_ENV');
+Reflect.decorate([IsNumber()], EnvironmentVariables.prototype, 'PORT');
+Reflect.decorate([IsString()], EnvironmentVariables.prototype, 'DB_HOST');
+Reflect.decorate([IsString()], EnvironmentVariables.prototype, 'DB_USERNAME');
+Reflect.decorate([IsString()], EnvironmentVariables.prototype, 'DB_PASSWORD');
+Reflect.decorate([IsString()], EnvironmentVariables.prototype, 'DB_NAME');
+Reflect.decorate([IsString()], EnvironmentVariables.prototype, 'SECRET');
+const validated = plainToInstance(EnvironmentVariables, env, { enableImplicitConversion: true });
+console.log('validated instance', validated);
+const errors = validateSync(validated, { skipMissingProperties: false });
+console.log('errors', errors);
